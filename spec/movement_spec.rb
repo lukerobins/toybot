@@ -26,4 +26,42 @@ describe Movement do
       expect(Movement.turn(:North, :left)).to eq :West
     end
   end
+
+  describe '#move' do
+    context "facing :North" do
+      let(:position) { Position.new(1, 2, :North) }
+      let(:new_position) { Position.new(1, 3,:North) }
+
+      it 'returns position of y + 1' do
+        expect(Movement.move(position, 1)).to eq new_position
+      end
+    end
+
+    context "facing :East" do
+      let(:position) { Position.new(1, 2, :East) }
+      let(:new_position) { Position.new(2, 2, :East) }
+
+      it 'returns position of x + 1' do
+        expect(Movement.move(position, 1)).to eq new_position
+      end
+    end
+
+    context "facing :South" do
+      let(:position) { Position.new(1, 2, :South) }
+      let(:new_position) { Position.new(1,1,:South) }
+
+      it 'returns position of y - 1' do
+        expect(Movement.move(position, 1)).to eq new_position
+      end
+    end
+
+    context "facing :West" do
+      let(:position) { Position.new(1, 2, :West) }
+      let(:new_position) { Position.new(0, 2, :West) }
+
+      it 'returns position of x - 1' do
+        expect(Movement.move(position, 1)).to eq new_position
+      end
+    end
+  end
 end

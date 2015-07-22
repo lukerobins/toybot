@@ -1,4 +1,6 @@
 class Movement
+  require 'position'
+
   Directions = [
     :North,
     :East,
@@ -20,6 +22,26 @@ class Movement
       Directions[index]
     else
       raise "direction must be either :right or :left"
+    end
+  end
+
+  # southwest corner 0,0
+  def self.move position, distance
+    case position.facing
+    when :North
+      position.y += distance
+      position
+    when :East
+      position.x += distance
+      position
+    when :South
+      position.y -= distance
+      position
+    when :West
+      position.x -= distance
+      position
+    else
+      raise "Do not know how to move from current position #{position.to_s}"
     end
   end
 end
