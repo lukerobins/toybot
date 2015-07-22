@@ -1,10 +1,10 @@
 class Robot
-  attr_reader :x, :y, :facing, :tabletop
+  require 'position'
+
+  attr_reader :position, :tabletop
 
   def initialize
-    @x = nil
-    @y = nil
-    @facing = nil
+    @position = nil
     @tabletop = nil
   end
 end
