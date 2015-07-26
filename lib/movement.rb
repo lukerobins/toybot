@@ -1,45 +1,44 @@
-class Movement
-  require 'position'
-
-  Directions = [
+module Movement
+  Facings = [
     :North,
     :East,
     :South,
     :West
   ]
 
-  def self.valid_direction? direction
-    Directions.include? direction.capitalize.to_sym
+  def valid_facing? facing
+    Facings.include? facing
   end
 
-  def self.turn current_facing, direction
-    raise "current_facing: #{current_facing} must be one of #{Directions.to_s}" unless valid_direction? current_facing
+  def turn direction
+    return unless @position #ignore turn until placed
     if direction == :right
-      index = (Directions.index(current_facing) + 1) % Directions.count
-      Directions[index]
+      index = (Facings.index(@position.facing) + 1) % Facings.count
+      @position.facing = Facings[index]
     elsif direction == :left
-      index = (Directions.index(current_facing) - 1) % Directions.count
-      Directions[index]
+      index = (Facings.index(@position.facing) - 1) % Facings.count
+      @position.facing = Facings[index]
     else
-      raise "direction must be either :right or :left"
+      raise "Cannot turn direction '#{direction}'"
     end
   end
 
   # southwest corner 0,0
-  def self.move position, distance
-    case position.facing
+  def new_position
+    result = @position.dup
+    case result.facing
     when :North
-      position.y += distance
-      position
+      result.y += @speed
+      result
     when :East
-      position.x += distance
-      position
+      result.x += @speed
+      result
     when :South
-      position.y -= distance
-      position
+      result.y -= @speed
+      result
     when :West
-      position.x -= distance
-      position
+      result.x -= @speed
+      result
     else
       raise "Do not know how to move from current position #{position.to_s}"
     end
