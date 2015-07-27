@@ -18,15 +18,15 @@ describe ToyRobot::Tabletop do
 
   describe '#valid_position?' do
     it 'returns true if x and y within tabletop and facing is valid' do
-      expect(tabletop.valid_position? ToyRobot::Position.new(2, 6, :West)).to be true
+      expect(tabletop.valid_position? ToyRobot::Position.new(2, 6, :west)).to be true
     end
 
     it 'returns false if x outside tabletop' do
-      expect(tabletop.valid_position? ToyRobot::Position.new(8, 6, :West)).to be false
+      expect(tabletop.valid_position? ToyRobot::Position.new(8, 6, :west)).to be false
     end
 
     it 'returns false if y outside tabletop' do
-      expect(tabletop.valid_position? ToyRobot::Position.new(2, 9, :West)).to be false
+      expect(tabletop.valid_position? ToyRobot::Position.new(2, 9, :west)).to be false
     end
   end
 
@@ -37,7 +37,7 @@ describe ToyRobot::Tabletop do
 
 
     context 'valid placement' do
-      let(:position) { ToyRobot::Position.new(2,3,:North) }
+      let(:position) { ToyRobot::Position.new(2,3,:north) }
       before do
         tabletop.add_toy robot, position
       end
@@ -56,7 +56,7 @@ describe ToyRobot::Tabletop do
     end
 
     context 'invalid placement' do
-      let(:position) { ToyRobot::Position.new(6,3,:North) }
+      let(:position) { ToyRobot::Position.new(6,3,:north) }
       before do
         tabletop.add_toy robot, position
       end

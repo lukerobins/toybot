@@ -1,10 +1,10 @@
 module ToyRobot
   module Movement
     Facings = [
-      :North,
-      :East,
-      :South,
-      :West
+      :north,
+      :east,
+      :south,
+      :west
     ]
 
     def valid_facing? facing
@@ -28,16 +28,16 @@ module ToyRobot
     def new_position
       result = @position.dup
       case result.facing
-      when :North
+      when :north
         result.y += @speed
         result
-      when :East
+      when :east
         result.x += @speed
         result
-      when :South
+      when :south
         result.y -= @speed
         result
-      when :West
+      when :west
         result.x -= @speed
         result
       else

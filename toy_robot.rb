@@ -16,7 +16,7 @@ $stdin.each_line do |line|
     puts controller.report
   when /\s*PLACE (\d),(\d),(\w{4,5})\s*/
     matchdata = Regexp.last_match
-    controller.place matchdata[1].to_i, matchdata[2].to_i, matchdata[3].capitalize.to_sym
+    controller.place matchdata[1].to_i, matchdata[2].to_i, matchdata[3].downcase.to_sym
   else
     puts 'Sorry Robot did not understand your command'
   end

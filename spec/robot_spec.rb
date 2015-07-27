@@ -16,19 +16,19 @@ describe ToyRobot::Robot do
 
   describe '#move' do
     before do
-      tabletop.add_toy robot, ToyRobot::Position.new(0,0,:North)
+      tabletop.add_toy robot, ToyRobot::Position.new(0,0,:north)
     end
 
     context 'valid move' do
-      let(:expected_position) { ToyRobot::Position.new(0,1,:North) }
-      it 'move one :North' do
+      let(:expected_position) { ToyRobot::Position.new(0,1,:north) }
+      it 'move one :north' do
         robot.move
         expect(robot.position).to eq expected_position
       end
     end
 
     context 'invalid move' do
-      let(:position) {ToyRobot::Position.new(0,0,:South)}
+      let(:position) {ToyRobot::Position.new(0,0,:south)}
 
       before do
         tabletop.add_toy(robot, position)
@@ -53,17 +53,17 @@ describe ToyRobot::Robot do
 
     context 'placed robot' do
       before do
-        tabletop.add_toy robot, ToyRobot::Position.new(0,0,:North)
+        tabletop.add_toy robot, ToyRobot::Position.new(0,0,:north)
       end
 
-      it 'turns to left to :West' do
+      it 'turns to left to :west' do
         robot.turn :left
-        expect(robot.position.facing).to eq :West
+        expect(robot.position.facing).to eq :west
       end
 
-      it 'turns to right to :East' do
+      it 'turns to right to :east' do
         robot.turn :right
-        expect(robot.position.facing).to eq :East
+        expect(robot.position.facing).to eq :east
       end
 
       it 'throws error on incorrect direction' do
@@ -81,7 +81,7 @@ describe ToyRobot::Robot do
 
     context 'placed robot' do
       it 'returns robot position' do
-        tabletop.add_toy robot, ToyRobot::Position.new(0,1,:West)
+        tabletop.add_toy robot, ToyRobot::Position.new(0,1,:west)
         expect(robot.report).to eq '0,1,WEST'
       end
     end

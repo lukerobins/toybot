@@ -5,82 +5,82 @@ describe ToyRobot::Movement do
 
   describe '#valid_facing?' do
     it 'returns true if valid facing' do
-      expect(robot.valid_facing? :South).to be true
+      expect(robot.valid_facing? :south).to be true
     end
 
     it 'returns false if invalid facing' do
-      expect(robot.valid_facing? :Southwest).to be false
+      expect(robot.valid_facing? :southwest).to be false
     end
   end
 
   describe '#turn' do
-    context 'facing :West'do
+    context 'facing :west'do
       before do
-        robot.position = ToyRobot::Position.new 1, 1, :West
+        robot.position = ToyRobot::Position.new 1, 1, :west
       end
 
-      it 'returns :North if turning :right and facing :West' do
-        expect(robot.turn(:right)).to eq :North
+      it 'returns :north if turning :right and facing :west' do
+        expect(robot.turn(:right)).to eq :north
       end
 
-      it 'returns :South if turning :left and facing :West' do
-        expect(robot.turn(:left)).to eq :South
+      it 'returns :south if turning :left and facing :west' do
+        expect(robot.turn(:left)).to eq :south
       end
     end
 
-    context 'facing :North'do
+    context 'facing :north'do
       before do
-        robot.position = ToyRobot::Position.new 1, 1, :North
+        robot.position = ToyRobot::Position.new 1, 1, :north
       end
 
-      it 'returns :East if turning :right' do
-        expect(robot.turn(:right)).to eq :East
+      it 'returns :east if turning :right' do
+        expect(robot.turn(:right)).to eq :east
       end
 
-      it 'returns :West if turning :left' do
-        expect(robot.turn(:left)).to eq :West
+      it 'returns :west if turning :left' do
+        expect(robot.turn(:left)).to eq :west
       end
     end
 
-    context 'facing :East'do
+    context 'facing :east'do
       before do
-        robot.position = ToyRobot::Position.new 1, 1, :East
+        robot.position = ToyRobot::Position.new 1, 1, :east
       end
 
-      it 'returns :South if turning :right' do
-        expect(robot.turn(:right)).to eq :South
+      it 'returns :south if turning :right' do
+        expect(robot.turn(:right)).to eq :south
       end
 
-      it 'returns :North if turning :left' do
-        expect(robot.turn(:left)).to eq :North
+      it 'returns :north if turning :left' do
+        expect(robot.turn(:left)).to eq :north
       end
     end
 
-    context 'facing :South'do
+    context 'facing :south'do
       before do
-        robot.position = ToyRobot::Position.new 1, 1, :South
+        robot.position = ToyRobot::Position.new 1, 1, :south
       end
 
-      it 'returns :West if turning :right' do
-        expect(robot.turn(:right)).to eq :West
+      it 'returns :west if turning :right' do
+        expect(robot.turn(:right)).to eq :west
       end
 
-      it 'returns :East if turning :left' do
-        expect(robot.turn(:left)).to eq :East
+      it 'returns :east if turning :left' do
+        expect(robot.turn(:left)).to eq :east
       end
     end
 
-    context 'facing :West'do
+    context 'facing :west'do
       before do
-        robot.position = ToyRobot::Position.new 1, 1, :West
+        robot.position = ToyRobot::Position.new 1, 1, :west
       end
 
-      it 'returns :North if turning :right and facing :West' do
-        expect(robot.turn(:right)).to eq :North
+      it 'returns :north if turning :right and facing :west' do
+        expect(robot.turn(:right)).to eq :north
       end
 
-      it 'returns :South if turning :left and facing :West' do
-        expect(robot.turn(:left)).to eq :South
+      it 'returns :south if turning :left and facing :west' do
+        expect(robot.turn(:left)).to eq :south
       end
     end
   end
@@ -90,36 +90,36 @@ describe ToyRobot::Movement do
       robot.position = position
     end
 
-    context "facing :North" do
-      let(:position) { ToyRobot::Position.new(1, 2, :North) }
-      let(:expected_position) { ToyRobot::Position.new(1, 3,:North) }
+    context "facing :north" do
+      let(:position) { ToyRobot::Position.new(1, 2, :north) }
+      let(:expected_position) { ToyRobot::Position.new(1, 3,:north) }
 
       it 'returns position of y + 1' do
         expect(robot.new_position).to eq expected_position
       end
     end
 
-    context "facing :East" do
-      let(:position) { ToyRobot::Position.new(1, 2, :East) }
-      let(:expected_position) { ToyRobot::Position.new(2, 2, :East) }
+    context "facing :east" do
+      let(:position) { ToyRobot::Position.new(1, 2, :east) }
+      let(:expected_position) { ToyRobot::Position.new(2, 2, :east) }
 
       it 'returns position of x + 1' do
         expect(robot.new_position).to eq expected_position
       end
     end
 
-    context "facing :South" do
-      let(:position) { ToyRobot::Position.new(1, 2, :South) }
-      let(:expected_position) { ToyRobot::Position.new(1,1,:South) }
+    context "facing :south" do
+      let(:position) { ToyRobot::Position.new(1, 2, :south) }
+      let(:expected_position) { ToyRobot::Position.new(1,1,:south) }
 
       it 'returns position of y - 1' do
         expect(robot.new_position).to eq expected_position
       end
     end
 
-    context "facing :West" do
-      let(:position) { ToyRobot::Position.new(1, 2, :West) }
-      let(:expected_position) { ToyRobot::Position.new(0, 2, :West) }
+    context "facing :west" do
+      let(:position) { ToyRobot::Position.new(1, 2, :west) }
+      let(:expected_position) { ToyRobot::Position.new(0, 2, :west) }
 
       it 'returns position of x - 1' do
         expect(robot.new_position).to eq expected_position
