@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Robot do
-  let(:robot) { Robot.new }
-  let(:tabletop) { Tabletop.new(5,5) }
+describe ToyRobot::Robot do
+  let(:robot) { ToyRobot::Robot.new }
+  let(:tabletop) { ToyRobot::Tabletop.new(5,5) }
 
   describe 'unplaced robot' do
     it 'has no position' do
@@ -16,11 +16,11 @@ describe Robot do
 
   describe '#move' do
     before do
-      tabletop.add_toy robot, Position.new(0,0,:North)
+      tabletop.add_toy robot, ToyRobot::Position.new(0,0,:North)
     end
 
     context 'valid move' do
-      let(:expected_position) { Position.new(0,1,:North) }
+      let(:expected_position) { ToyRobot::Position.new(0,1,:North) }
       it 'move one :North' do
         robot.move
         expect(robot.position).to eq expected_position
@@ -28,7 +28,7 @@ describe Robot do
     end
 
     context 'invalid move' do
-      let(:position) {Position.new(0,0,:South)}
+      let(:position) {ToyRobot::Position.new(0,0,:South)}
 
       before do
         tabletop.add_toy(robot, position)
@@ -43,7 +43,7 @@ describe Robot do
 
   describe '#turn' do
     context 'unplaced robot' do
-      let(:robot) { Robot.new }
+      let(:robot) { ToyRobot::Robot.new }
 
       it 'turn is ignored' do
         robot.turn :left
@@ -53,7 +53,7 @@ describe Robot do
 
     context 'placed robot' do
       before do
-        tabletop.add_toy robot, Position.new(0,0,:North)
+        tabletop.add_toy robot, ToyRobot::Position.new(0,0,:North)
       end
 
       it 'turns to left to :West' do
@@ -81,7 +81,7 @@ describe Robot do
 
     context 'placed robot' do
       it 'returns robot position' do
-        tabletop.add_toy robot, Position.new(0,1,:West)
+        tabletop.add_toy robot, ToyRobot::Position.new(0,1,:West)
         expect(robot.report).to eq '0,1,WEST'
       end
     end

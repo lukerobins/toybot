@@ -1,1 +1,3 @@
-Position = Struct.new(:x, :y, :facing)
+module ToyRobot
+  Position = Struct.new(:x, :y, :facing)
+end

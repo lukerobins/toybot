@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Movement do
-  let(:robot) { Robot.new }
+describe ToyRobot::Movement do
+  let(:robot) { ToyRobot::Robot.new }
 
   describe '#valid_facing?' do
     it 'returns true if valid facing' do
@@ -16,7 +16,7 @@ describe Movement do
   describe '#turn' do
     context 'facing :West'do
       before do
-        robot.position = Position.new 1, 1, :West
+        robot.position = ToyRobot::Position.new 1, 1, :West
       end
 
       it 'returns :North if turning :right and facing :West' do
@@ -30,7 +30,7 @@ describe Movement do
 
     context 'facing :North'do
       before do
-        robot.position = Position.new 1, 1, :North
+        robot.position = ToyRobot::Position.new 1, 1, :North
       end
 
       it 'returns :East if turning :right' do
@@ -44,7 +44,7 @@ describe Movement do
 
     context 'facing :East'do
       before do
-        robot.position = Position.new 1, 1, :East
+        robot.position = ToyRobot::Position.new 1, 1, :East
       end
 
       it 'returns :South if turning :right' do
@@ -58,7 +58,7 @@ describe Movement do
 
     context 'facing :South'do
       before do
-        robot.position = Position.new 1, 1, :South
+        robot.position = ToyRobot::Position.new 1, 1, :South
       end
 
       it 'returns :West if turning :right' do
@@ -72,7 +72,7 @@ describe Movement do
 
     context 'facing :West'do
       before do
-        robot.position = Position.new 1, 1, :West
+        robot.position = ToyRobot::Position.new 1, 1, :West
       end
 
       it 'returns :North if turning :right and facing :West' do
@@ -91,8 +91,8 @@ describe Movement do
     end
 
     context "facing :North" do
-      let(:position) { Position.new(1, 2, :North) }
-      let(:expected_position) { Position.new(1, 3,:North) }
+      let(:position) { ToyRobot::Position.new(1, 2, :North) }
+      let(:expected_position) { ToyRobot::Position.new(1, 3,:North) }
 
       it 'returns position of y + 1' do
         expect(robot.new_position).to eq expected_position
@@ -100,8 +100,8 @@ describe Movement do
     end
 
     context "facing :East" do
-      let(:position) { Position.new(1, 2, :East) }
-      let(:expected_position) { Position.new(2, 2, :East) }
+      let(:position) { ToyRobot::Position.new(1, 2, :East) }
+      let(:expected_position) { ToyRobot::Position.new(2, 2, :East) }
 
       it 'returns position of x + 1' do
         expect(robot.new_position).to eq expected_position
@@ -109,8 +109,8 @@ describe Movement do
     end
 
     context "facing :South" do
-      let(:position) { Position.new(1, 2, :South) }
-      let(:expected_position) { Position.new(1,1,:South) }
+      let(:position) { ToyRobot::Position.new(1, 2, :South) }
+      let(:expected_position) { ToyRobot::Position.new(1,1,:South) }
 
       it 'returns position of y - 1' do
         expect(robot.new_position).to eq expected_position
@@ -118,8 +118,8 @@ describe Movement do
     end
 
     context "facing :West" do
-      let(:position) { Position.new(1, 2, :West) }
-      let(:expected_position) { Position.new(0, 2, :West) }
+      let(:position) { ToyRobot::Position.new(1, 2, :West) }
+      let(:expected_position) { ToyRobot::Position.new(0, 2, :West) }
 
       it 'returns position of x - 1' do
         expect(robot.new_position).to eq expected_position

@@ -1,6 +1,8 @@
+#!/usr/bin/env ruby
+
 require './lib/toy_robot'
 
-controller = Controller.new Tabletop.new(5,5), Robot.new
+controller = ToyRobot::Controller.new ToyRobot::Tabletop.new(5,5), ToyRobot::Robot.new
 
 $stdin.each_line do |line|
   case line

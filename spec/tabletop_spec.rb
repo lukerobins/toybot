@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Tabletop do
+describe ToyRobot::Tabletop do
 
-  let(:tabletop) { Tabletop.new( 7,7 ) }
+  let(:tabletop) { ToyRobot::Tabletop.new( 7,7 ) }
 
   describe '#height' do
     it 'returns tabletop height' do
@@ -18,26 +18,26 @@ describe Tabletop do
 
   describe '#valid_position?' do
     it 'returns true if x and y within tabletop and facing is valid' do
-      expect(tabletop.valid_position? Position.new(2, 6, :West)).to be true
+      expect(tabletop.valid_position? ToyRobot::Position.new(2, 6, :West)).to be true
     end
 
     it 'returns false if x outside tabletop' do
-      expect(tabletop.valid_position? Position.new(8, 6, :West)).to be false
+      expect(tabletop.valid_position? ToyRobot::Position.new(8, 6, :West)).to be false
     end
 
     it 'returns false if y outside tabletop' do
-      expect(tabletop.valid_position? Position.new(2, 9, :West)).to be false
+      expect(tabletop.valid_position? ToyRobot::Position.new(2, 9, :West)).to be false
     end
   end
 
 
   describe '#add_toy' do
-    let(:tabletop) { Tabletop.new(5,5)}
-    let(:robot) { Robot.new }
+    let(:tabletop) { ToyRobot::Tabletop.new(5,5)}
+    let(:robot) { ToyRobot::Robot.new }
 
 
     context 'valid placement' do
-      let(:position) { Position.new(2,3,:North) }
+      let(:position) { ToyRobot::Position.new(2,3,:North) }
       before do
         tabletop.add_toy robot, position
       end
@@ -56,7 +56,7 @@ describe Tabletop do
     end
 
     context 'invalid placement' do
-      let(:position) { Position.new(6,3,:North) }
+      let(:position) { ToyRobot::Position.new(6,3,:North) }
       before do
         tabletop.add_toy robot, position
       end
