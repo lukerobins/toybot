@@ -16,5 +16,11 @@ class Robot
     end
   end
 
+  def report
+    if @tabletop.nil?
+      'Robot not on a tabletop'
+    else
+      "#{@position.x},#{@position.y},#{@position.facing.upcase}"
+    end
   end
 end
