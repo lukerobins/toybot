@@ -5,7 +5,7 @@ module ToyRobot
       :east,
       :south,
       :west
-    ]
+    ].freeze
 
     def valid_facing? facing
       Facings.include? facing

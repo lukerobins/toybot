@@ -2,7 +2,6 @@ module ToyRobot
   class Robot
     include Movement
     attr_accessor :position, :tabletop
-    attr_reader :speed
 
     def initialize speed=1
       @position = nil

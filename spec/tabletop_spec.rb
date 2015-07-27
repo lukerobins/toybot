@@ -4,18 +4,6 @@ describe ToyRobot::Tabletop do
 
   let(:tabletop) { ToyRobot::Tabletop.new( 7,7 ) }
 
-  describe '#height' do
-    it 'returns tabletop height' do
-      expect(tabletop.height).to eq 7
-    end
-  end
-
-  describe '#width' do
-    it 'returns tabletop width' do
-      expect(tabletop.width).to eq 7
-    end
-  end
-
   describe '#valid_position?' do
     it 'returns true if x and y within tabletop and facing is valid' do
       expect(tabletop.valid_position? ToyRobot::Position.new(2, 6, :west)).to be true
