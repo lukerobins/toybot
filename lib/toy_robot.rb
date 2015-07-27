@@ -1,3 +1,4 @@
+require_relative 'controller'
 require_relative 'movement'
 require_relative 'position'
 require_relative 'robot'
