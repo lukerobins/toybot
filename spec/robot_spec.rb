@@ -1,9 +1,8 @@
 require 'spec_helper'
-require 'robot'
-require 'tabletop'
 
 describe Robot do
   let(:robot) { Robot.new }
+  let(:tabletop) { Tabletop.new(5,5) }
 
   describe 'unplaced robot' do
     it 'has no position' do
@@ -16,21 +15,15 @@ describe Robot do
   end
 
   describe '#move' do
-    let(:robot) do
-      tabletop = Tabletop.new(5,5)
-      robot = Robot.new
-      robot.place(Position.new(0,0,:North),tabletop)
-      robot
+    before do
+      tabletop.add_toy robot, Position.new(0,0,:North)
     end
 
     context 'valid move' do
+      let(:expected_position) { Position.new(0,1,:North) }
       it 'move one :North' do
         robot.move
-        expect(robot.position.y).to eq 1
-      end
-
-      it 'returns true' do
-        expect(robot.move).to be true
+        expect(robot.position).to eq expected_position
       end
     end
 
@@ -38,16 +31,12 @@ describe Robot do
       let(:position) {Position.new(0,0,:South)}
 
       before do
-        robot.place(position)
+        tabletop.add_toy(robot, position)
       end
 
       it 'does not move' do
         robot.move
         expect(robot.position).to eq position
-      end
-
-      it 'returns false' do
-        expect(robot.move).to be false
       end
     end
   end
@@ -55,21 +44,16 @@ describe Robot do
   describe '#turn' do
     context 'unplaced robot' do
       let(:robot) { Robot.new }
-      it 'returns false' do
-        expect(robot.turn :left).to be false
+
+      it 'turn is ignored' do
+        robot.turn :left
+        expect(robot.position).to be nil
       end
     end
 
     context 'placed robot' do
-      let(:robot) do
-        tabletop = Tabletop.new(5,5)
-        robot = Robot.new
-        robot.place(Position.new(0,0,:North),tabletop)
-        robot
-      end
-
-      it 'returns true' do
-        expect(robot.turn :left).to be true
+      before do
+        tabletop.add_toy robot, Position.new(0,0,:North)
       end
 
       it 'turns to left to :West' do
@@ -78,8 +62,27 @@ describe Robot do
       end
 
       it 'turns to right to :East' do
-        robot.turn 'RIGHT'
+        robot.turn :right
         expect(robot.position.facing).to eq :East
+      end
+
+      it 'throws error on incorrect direction' do
+        expect{robot.turn 'RIGHT'}.to raise_error("Cannot turn direction 'RIGHT'")
+      end
+    end
+  end
+
+  describe '#report' do
+    context 'unplaced robot' do
+      it 'returns not on table' do
+        expect(robot.report).to eq 'Robot not on a tabletop'
+      end
+    end
+
+    context 'placed robot' do
+      it 'returns robot position' do
+        tabletop.add_toy robot, Position.new(0,1,:West)
+        expect(robot.report).to eq '0,1,WEST'
       end
     end
   end
