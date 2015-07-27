@@ -9,12 +9,6 @@ module ToyRobot
       @speed = speed
     end
 
-    def move
-      if ! @tabletop.nil? && @tabletop.valid_position?(new_position)
-        @position = new_position
-      end
-    end
-
     def report
       if @tabletop.nil?
         'Robot not on a tabletop'

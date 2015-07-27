@@ -24,6 +24,12 @@ module ToyRobot
       end
     end
 
+    def move
+      if ! @tabletop.nil? && @tabletop.valid_position?(new_position)
+        @position = new_position
+      end
+    end
+
     # southwest corner 0,0
     def new_position
       result = @position.dup
