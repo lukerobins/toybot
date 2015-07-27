@@ -8,16 +8,6 @@ class Robot
     @tabletop = nil
   end
 
-  def place position, tabletop=nil
-    tabletop = tabletop || @tabletop #can place on new tabletop
-    raise 'robot has no tabletop' unless tabletop
-    if valid_placement? position, tabletop
-      @position = position
-      @tabletop = tabletop
-      true
-    else
-      false
-    end
   end
 
   def move

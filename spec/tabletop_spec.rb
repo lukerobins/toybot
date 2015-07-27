@@ -1,9 +1,8 @@
 require 'spec_helper'
-require 'tabletop'
 
 describe Tabletop do
 
-  let!(:tabletop) { Tabletop.new( 7,7 ) }
+  let(:tabletop) { Tabletop.new( 7,7 ) }
 
   describe '#height' do
     it 'returns tabletop height' do
@@ -18,16 +17,61 @@ describe Tabletop do
   end
 
   describe '#valid_position?' do
-    it 'returns true if x and y within tabletop' do
-      expect(tabletop.valid_position? 2,6).to be true
+    it 'returns true if x and y within tabletop and facing is valid' do
+      expect(tabletop.valid_position? Position.new(2, 6, :West)).to be true
     end
 
     it 'returns false if x outside tabletop' do
-      expect(tabletop.valid_position? 8,6).to be false
+      expect(tabletop.valid_position? Position.new(8, 6, :West)).to be false
     end
 
     it 'returns false if y outside tabletop' do
-      expect(tabletop.valid_position? 1,9).to be false
+      expect(tabletop.valid_position? Position.new(2, 9, :West)).to be false
+    end
+  end
+
+
+  describe '#add_toy' do
+    let(:tabletop) { Tabletop.new(5,5)}
+    let(:robot) { Robot.new }
+
+
+    context 'valid placement' do
+      let(:position) { Position.new(2,3,:North) }
+      before do
+        tabletop.add_toy robot, position
+      end
+
+      it 'position is set to placement' do
+        expect(robot.position).to eq position
+      end
+
+      it 'tabletop is set' do
+        expect(robot.tabletop).to eq tabletop
+      end
+
+      it 'tabletop has_toy' do
+        expect(tabletop.has_toy? robot).to be true
+      end
+    end
+
+    context 'invalid placement' do
+      let(:position) { Position.new(6,3,:North) }
+      before do
+        tabletop.add_toy robot, position
+      end
+
+      it 'position is unset' do
+        expect(robot.position).to be nil
+      end
+
+      it 'tabletop is unset' do
+        expect(robot.tabletop).to be nil
+      end
+
+      it 'tabletop does not has_toy' do
+        expect(tabletop.has_toy? robot).to be false
+      end
     end
   end
 end

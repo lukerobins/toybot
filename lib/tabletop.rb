@@ -4,22 +4,34 @@ class Tabletop
   def initialize(height=5,width=5)
     @height = height
     @width = width
+    @toys = []
   end
 
-  def valid_position? x, y
-    return false if invalid_x? x
-    return false if invalid_y? y
-    true
+  def add_toy toy, position
+    if valid_position?(position) && toy.valid_facing?(position.facing)
+      @toys.push toy unless has_toy? toy
+      toy.position = position
+      toy.tabletop = self
+    end
+  end
+
+  def has_toy? toy
+    @toys.include? toy
+  end
+
+  def valid_position? position
+    valid_x?(position.x) && valid_y?(position.y)
   end
 
   private
 
-  def invalid_x? x
-    x < 0 or x > @width
+
+  def valid_x? x
+    x >= 0 and x <= @width
   end
 
-  def invalid_y? y
-    y < 0 or y > @height
+  def valid_y? y
+    y >= 0 and y <= @height
   end
 
 end
