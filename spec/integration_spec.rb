@@ -7,7 +7,7 @@ describe 'integration tests' do
 
   it 'reports expected robot position' do
     result = `ruby toy_robot.rb < #{test_file1}`.chomp
-    expect(result).to eq '5,3,NORTH'
+    expect(result).to eq '4,3,NORTH'
   end
 
   it 'reports expected robot position' do

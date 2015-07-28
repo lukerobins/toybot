@@ -25,11 +25,11 @@ module ToyRobot
     private
 
     def valid_x? x
-      x >= 0 and x <= @width
+      x >= 0 and x < @width
     end
 
     def valid_y? y
-      y >= 0 and y <= @height
+      y >= 0 and y < @height
     end
   end
 end
